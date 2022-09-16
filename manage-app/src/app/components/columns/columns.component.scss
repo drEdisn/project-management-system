@@ -1,0 +1,160 @@
+@import 'variables';
+
+.columns {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 9.2rem);
+  padding: 0;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 80%;
+    height: 100%;
+    padding: 2rem 1rem;
+    background-color: $boards-bg;
+  }
+
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+    height: 10%;
+    border-bottom: 0.1rem solid $sign-error;
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    font-weight: 400;
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__id {
+    color: $sign-error;
+  }
+
+  &__content {
+    height: 90%;
+    width: 90%;
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: rgb(36, 1, 78);
+    }
+    &::-webkit-scrollbar-button {
+      width: 0;
+      height: 0;
+    }
+    &::-webkit-scrollbar {
+      position: absolute;
+      right: -3rem;
+      height: 0.5rem;
+      background-color: rgba(76, 28, 158, 0.484);
+    }
+  }
+
+  &__item {
+    cursor: all-scroll;
+    min-width: calc(100%/4 - 1rem);
+    min-height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: $bg;
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+
+  &__setting {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.back {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0.1rem solid $white-light;
+  border-radius: 50%;
+  transition: 0.3s;
+  &:hover {
+    background-color: $white-light;
+  }
+}
+
+.add-item {
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  background-color: $add-task;
+  transition: 0.3s;
+  &:hover {
+    background-color: $bg;
+  }
+}
+
+.delete-item {
+  fill: $white;
+  background-color: $sign-error;
+}
+
+.empty {
+  cursor: pointer;
+  min-height: 10%;
+  border: 0.1rem dashed $white-light;
+  color: $white-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: 0.3s not-empty ease-out;
+
+  &:hover {
+    animation: 0.3s empty ease-out;
+    height: 100%;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+}
+
+@keyframes empty {
+  0% {
+    height: 10%;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes not-empty {
+  0% {
+    height: 100%;
+  }
+  100% {
+    height: 10%;
+  }
+}

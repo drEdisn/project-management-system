@@ -1,0 +1,8 @@
+<div class="overview"></div>
+
+<div class="modal">
+  <div class="modal-text" [class.color]="modalService.isColor">
+    {{ modalService.text }}
+  </div>
+  <button class="button modal-button" [class.bgcolor]="modalService.isColor" type="button" (click)="modalService.close()">OK</button>
+</div>

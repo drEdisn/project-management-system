@@ -1,0 +1,93 @@
+@import 'variables';
+
+.course {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../../../../assets/course-bg.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    z-index: -1;
+  }
+  padding: 5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    border-bottom: 0.2rem solid $angular;
+  }
+
+  &__about {
+    width: 80%;
+    font-size: 1.2rem;
+    text-align: justify;
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    width: 80%;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 400;
+    background-color: $angular;
+    border: 0.1rem solid $angular;
+    width: 5.5rem;
+    height: 2.5rem;
+    &:hover {
+      filter: none;
+      background-color: inherit;
+    }
+  }
+}
+
+.block {
+  display: flex;
+  width: 45%;
+  &__img {
+    width: 3rem;
+    height: 3rem;
+    fill: $angular;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    padding: 0 1rem;
+  }
+
+  &__title {
+    width: 100%;
+    padding: 0 1rem;
+    font-size: 1.3rem;
+    background-color: $angular;
+  }
+
+  &__text {
+    text-align: justify;
+  }
+}

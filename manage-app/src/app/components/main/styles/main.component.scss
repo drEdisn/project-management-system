@@ -1,0 +1,40 @@
+@import 'variables';
+
+section {
+  padding: 5rem 0;
+}
+
+.main {
+  &__hero {
+    min-height: 40rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, $gradient-1, $gradient-2);
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    background: linear-gradient(0deg, $header-bg, $gradient-1);
+  }
+  
+  &__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25rem;
+    background: linear-gradient(180deg, $header-bg, $gradient-2);
+  }
+
+  &__course {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 25rem;
+    padding: 0;
+  }
+}

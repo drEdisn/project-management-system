@@ -1,0 +1,93 @@
+<ng-container *ngIf="signin; else singup">
+  <div class="container sign-container">
+    <div class="loader" *ngIf="loaderService.isLoading | async">
+      <mat-spinner color="warn" mode="indeterminate"></mat-spinner>
+    </div>
+    <form class="sign__form" [formGroup]="formLogin" (ngSubmit)="loginUser()">
+      <h2 class="sign__title">Sign in</h2>
+      <div class="sign__inputs" *ngFor="let input of inputs.slice(1, 3)">
+        <app-input [nameTitle]="input" [value]="formLogin.controls">
+          <input
+            class="input"
+            [type]="input === 'password' ? input : 'text'"
+            [formControlName]="input"
+          >
+        </app-input>
+        <ng-container *ngTemplateOutlet="errors; context:getInput(formLogin, input)"></ng-container>
+      </div>
+      <button
+        class="sign__button button"
+        type="submit"
+        [disabled]="!formLogin.valid"
+      >
+        Sing in
+      </button>
+      <div class="sign__footer-info">
+        <p class="footer-info__text">
+          Don`t have an account?
+        </p>
+        <a class="footer-info__link" routerLink="/signup">Register!</a>
+      </div>
+    </form>
+    <app-modal *ngIf="modalService.isVisible"></app-modal>
+  </div>
+</ng-container>
+<ng-template #singup>
+  <div class="container sign-container">
+    <div class="loader" *ngIf="loaderService.isLoading | async">
+      <mat-spinner color="warn" mode="indeterminate"></mat-spinner>
+    </div>
+    <form class="sign__form" [formGroup]="form" (ngSubmit)="createUser()">
+      <h2 class="sign__title">Sign up</h2>
+      <div class="sign__inputs" *ngFor="let input of inputs">
+        <app-input [nameTitle]="input" [value]="form.controls">
+          <input
+            class="input"
+            [type]="input === 'password' ? input : 'text'"
+            [formControlName]="input"
+          >
+        </app-input>
+        <ng-container *ngTemplateOutlet="errors; context:getInput(form, input)"></ng-container>
+      </div>
+      <button type="submit" class="sign__button button" [disabled]="!form.valid">Sing up</button>
+      <div class="sign__footer-info">
+        <p class="footer-info__text">
+          Already have an account?
+        </p>
+        <a class="footer-info__link" routerLink="/signin">Login!</a>
+      </div>
+    </form>
+  </div>
+  <app-modal *ngIf="modalService.isVisible"></app-modal>
+</ng-template>
+
+<ng-template
+  #errors
+  let-errors="errors"
+  let-touched="touched"
+  >
+  <div
+    class="sign__error"
+    *ngIf="errors?.required && touched"
+  >
+    This field is required *
+  </div>
+  <div
+    class="sign__error"
+    *ngIf="errors?.minlength && touched"
+  >
+    Minimal length is {{ errors?.minlength.requiredLength }}
+  </div>
+  <div
+    class="sign__error"
+    *ngIf="errors?.email && touched"
+  >
+    It's not an email
+  </div>
+  <div
+    class="sign__error"
+    *ngIf="errors?.pattern && touched"
+  >
+    Your password is too simple
+  </div>
+</ng-template>

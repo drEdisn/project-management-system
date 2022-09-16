@@ -1,0 +1,25 @@
+@import 'variables';
+
+.footer {
+  height: 4.2rem;
+  background-color: $footer-bg;
+  display: flex;
+  align-items: center;
+  &__container {
+    width: 100%;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: $white;
+  }
+  &__info {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.course-link {
+  display: flex;
+  align-items: center;
+}

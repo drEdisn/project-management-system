@@ -1,0 +1,134 @@
+@import 'variables';
+
+.header {
+  height: 5rem;
+  background-color: $header-bg;
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  &__title {
+    margin-left: 0.2rem;
+  }
+
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__svg {
+    fill: $white;
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__logo {
+    position: relative;
+    width: 8rem;
+    height: 3rem;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+    &:hover {
+      background-color: $link-hover;
+      &::after {
+        content: "home";
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        bottom: -2.3rem;
+        font-size: 1rem;
+        line-height: 1.2rem;
+        font-weight: 300;
+        padding: 0.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        background-color: rgb(176 130 255 / 50%);
+      }
+    }
+  }
+
+  &__boards {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    height: 3rem;
+    width: 4rem;
+    cursor: pointer;
+    &:hover {
+      background-color: $link-hover;
+      &::after {
+        content: "boards";
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        bottom: -2.3rem;
+        font-size: 1rem;
+        line-height: 1.2rem;
+        font-weight: 300;
+        padding: 0.3rem;
+        color: rgba(255, 255, 255, 0.8);
+        background-color: rgb(176 130 255 / 50%);
+      }
+    }
+  }
+
+  &__login {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__logout {
+    background-color: $sign-error;
+    &:hover {
+      background-color: inherit;
+    }
+  }
+
+  &__user {
+    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+  }
+
+  &__profile-icon {
+    object-fit: contain;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.5rem;
+  }
+
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 400;
+  }
+}
+
+.log-btn {
+  font-weight: 400;
+  font-size: 1.1rem;
+  border-radius: 0.2rem;
+}
