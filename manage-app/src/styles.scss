@@ -12,7 +12,7 @@
 
 html,
 body {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Kanit', sans-serif !important;
   width: 100%;
   height: 100%;
   font-size: 1rem;
@@ -96,4 +96,23 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   bottom: 0.5rem;
   right: 0.8rem;
   left: 0.8rem;
+}
+
+.sign__error {
+  position: absolute;
+  bottom: -1.6rem;
+  left: 0.6rem;
+  color: $sign-error;
+  background-color: $header-bg;
+}
+
+.loader {
+  position: fixed;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $loader-bg;
 }

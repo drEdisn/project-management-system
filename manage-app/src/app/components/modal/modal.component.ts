@@ -13,5 +13,6 @@ export class ModalComponent  {
 
   constructor(
     public modalService: ModalService
-  ) { }
+  ) {}
+
 }

@@ -28,9 +28,38 @@ interface Form {
   login: FormControl<string | null>,
   password: FormControl<string | null>,
 }
+
 interface FormLogin {
   login: FormControl<string | null>,
   password: FormControl<string | null>,
+}
+
+interface Board {
+  id?: string,
+  title: string,
+  description: string,
+}
+
+interface Column {
+  id?: string,
+  title: string,
+  order?: number,
+}
+
+interface File {
+  filename: string,
+  fileSize: number,
+}
+
+interface Tasks {
+  id?: string,
+  title: string,
+  description: string,
+  userId: string,
+  order?: number,
+  boardId?: string,
+  columnId?: string,
+  files?: File[]
 }
 
 export {
@@ -39,5 +68,8 @@ export {
   Signin,
   Form,
   FormLogin,
-  Jwt
+  Jwt,
+  Board,
+  Tasks,
+  Column
 }

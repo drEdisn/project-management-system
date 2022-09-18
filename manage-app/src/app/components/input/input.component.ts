@@ -39,8 +39,8 @@ import { CommonModule } from '@angular/common';
       border: 0.1rem solid $bg;
       border-radius: 0 0.5rem 0 0.5rem;
       &.onfocus .input-text {
-          background-color: $header-bg;
-          transform:translateY(-1.5rem) scale(80%);
+        background-color: $header-bg;
+        transform:translateY(-1.5rem) scale(80%);
       }
     }
     
@@ -72,6 +72,7 @@ import { CommonModule } from '@angular/common';
     .onfocus {
       border: 0.1rem solid white;
     }
+
 `]
 })
 export class InputComponent {

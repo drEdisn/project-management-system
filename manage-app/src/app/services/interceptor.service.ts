@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhZWQyNDhiNC03NWZlLTQyYTMtODhjYy1mNTA2MmI5ZDliNDIiLCJsb2dpbiI6ImRlbkBtYWlsLnJ1IiwiaWF0IjoxNjYzMjYyMjc4fQ.jwY88-8FV8KirfAbC3k65wWk9S__CW0ALc76evZrBFE
 @Injectable({
   providedIn: 'root'
 })

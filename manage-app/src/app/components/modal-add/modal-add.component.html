@@ -1,0 +1,46 @@
+<div class="overview"></div>
+
+<form class="modal" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h6 class="modal__title title">{{title}} {{ modalAddService.value | titlecase }}</h6>
+  <div class="modal__input" *ngFor="let input of inputs">
+    <app-input
+      [nameTitle]="input"
+      [value]="form.controls"
+    >
+      <input
+        class="input"
+        type="text"
+        [formControlName]="input"
+      >
+    </app-input>
+    <ng-container *ngTemplateOutlet="errors; context: getInput(form, input)"></ng-container>
+  </div>
+  <div class="modal__buttons">
+    <button type="submit" class="buttons__submit button" [disabled]="!form.valid">
+      {{button}}
+    </button>
+    <button
+      type="button"
+      class="buttons__cancel button"
+      (click)="modalAddService.close()"
+    >
+      Cancel
+    </button>
+  </div>
+</form>
+
+
+<ng-template #errors let-errors="errors" let-touched="touched">
+  <div
+    class="sign__error"
+    *ngIf="errors?.required && touched"
+  >
+    This field is required *
+  </div>
+  <div
+    class="sign__error"
+    *ngIf="errors?.minlength && touched"
+  >
+    Minimal length is {{ errors?.minlength.requiredLength }}
+  </div>
+</ng-template>

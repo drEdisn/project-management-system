@@ -3,7 +3,11 @@ enum Api {
   user = 'users/',
   users = 'users',
   board = 'boards/',
-  boards = 'boards'
+  boards = 'boards',
+  columns = 'columns',
+  column = 'columns/',
+  task = 'tasks/',
+  tasks = 'tasks',
 }
 
 enum Auth {
