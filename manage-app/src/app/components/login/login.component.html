@@ -3,30 +3,30 @@
     <div class="loader" *ngIf="loaderService.isLoading | async">
       <mat-spinner color="warn" mode="indeterminate"></mat-spinner>
     </div>
-    <form class="sign__form" [formGroup]="formLogin" (ngSubmit)="loginUser()">
-      <h2 class="sign__title">Sign in</h2>
+    <form class="sign__form" [formGroup]="form" (ngSubmit)="loginUser()">
+      <h2 class="sign__title">{{ 'header.signin' | translate }}</h2>
       <div class="sign__inputs" *ngFor="let input of inputs.slice(1, 3)">
-        <app-input [nameTitle]="input" [value]="formLogin.controls">
+        <app-input class="sign__input" [pathTitle]="input.path" [nameTitle]="input.title" [value]="form.controls">
           <input
             class="input"
-            [type]="input === 'password' ? input : 'text'"
-            [formControlName]="input"
+            [type]="input.title === 'password' ? input.title : 'text'"
+            [formControlName]="input.title"
           >
         </app-input>
-        <ng-container *ngTemplateOutlet="errors; context:getInput(formLogin, input)"></ng-container>
+        <ng-container *ngTemplateOutlet="errors; context:getInput(form, input.title)"></ng-container>
       </div>
       <button
         class="sign__button button"
         type="submit"
-        [disabled]="!formLogin.valid"
+        [disabled]="!form.valid"
       >
-        Sing in
+        {{ 'header.signin' | translate }}
       </button>
       <div class="sign__footer-info">
         <p class="footer-info__text">
-          Don`t have an account?
+          {{ 'login.no-have-account' | translate }}
         </p>
-        <a class="footer-info__link" routerLink="/signup">Register!</a>
+        <a class="footer-info__link" routerLink="/signup">{{ 'header.signup' | translate }}!</a>
       </div>
     </form>
     <app-modal *ngIf="modalService.isVisible"></app-modal>
@@ -38,23 +38,23 @@
       <mat-spinner color="warn" mode="indeterminate"></mat-spinner>
     </div>
     <form class="sign__form" [formGroup]="form" (ngSubmit)="createUser()">
-      <h2 class="sign__title">Sign up</h2>
+      <h2 class="sign__title">{{ 'header.signup' | translate }}</h2>
       <div class="sign__inputs" *ngFor="let input of inputs">
-        <app-input [nameTitle]="input" [value]="form.controls">
+        <app-input class="sign__input" [pathTitle]="input.path" [nameTitle]="input.title" [value]="form.controls">
           <input
             class="input"
-            [type]="input === 'password' ? input : 'text'"
-            [formControlName]="input"
+            [type]="input.title === 'password' ? input.title : 'text'"
+            [formControlName]="input.title"
           >
         </app-input>
-        <ng-container *ngTemplateOutlet="errors; context:getInput(form, input)"></ng-container>
+        <ng-container *ngTemplateOutlet="errors; context:getInput(form, input.title)"></ng-container>
       </div>
-      <button type="submit" class="sign__button button" [disabled]="!form.valid">Sing up</button>
+      <button type="submit" class="sign__button button" [disabled]="!form.valid">{{ 'header.signup' | translate }}</button>
       <div class="sign__footer-info">
         <p class="footer-info__text">
-          Already have an account?
+          {{ 'login.have-account' | translate }}
         </p>
-        <a class="footer-info__link" routerLink="/signin">Login!</a>
+        <a class="footer-info__link" routerLink="/signin">{{ 'header.signin' | translate }}!</a>
       </div>
     </form>
   </div>
@@ -66,28 +66,5 @@
   let-errors="errors"
   let-touched="touched"
   >
-  <div
-    class="sign__error"
-    *ngIf="errors?.required && touched"
-  >
-    This field is required *
-  </div>
-  <div
-    class="sign__error"
-    *ngIf="errors?.minlength && touched"
-  >
-    Minimal length is {{ errors?.minlength.requiredLength }}
-  </div>
-  <div
-    class="sign__error"
-    *ngIf="errors?.email && touched"
-  >
-    It's not an email
-  </div>
-  <div
-    class="sign__error"
-    *ngIf="errors?.pattern && touched"
-  >
-    Your password is too simple
-  </div>
+ <app-errors [errors]="errors" [touched]="touched"></app-errors>
 </ng-template>

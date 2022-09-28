@@ -1,8 +1,12 @@
-<div class="tasks__item">
+<ng-container *ngIf="isChange">
+  <ng-container *ngTemplateOutlet="changeForm; context: task"></ng-container>
+</ng-container>
+<div class="tasks__item" cdkDrag [cdkDragDisabled]="isChange" (click)="changeOn()">
   <div class="tasks__head">
     <h6 class="tasks__name">{{ task.title }}</h6>
-    <div class="tasks__delete" (click)="removeTask()">
-      <svg class="tasks__delete" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
+    <div class="tasks__delete" (click)="removeTask($event)">
+      <svg style="fill: #dcd5d5;background-color: #b60505;border-radius: 0.2rem;" xmlns="http://www.w3.org/2000/svg"
+        height="24" width="24">
         <path
           d="M7 21q-.825 0-1.412-.587Q5 19.825 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .825-.587 1.413Q17.825 21 17 21ZM17 6H7v13h10ZM9 17h2V8H9Zm4 0h2V8h-2ZM7 6v13Z" />
       </svg>
@@ -11,3 +15,34 @@
   <div class="tasks__content">{{ task.description }}</div>
 </div>
 
+<ng-template #changeForm let-title="title" let-columnId="id">
+  <div class="overview"></div>
+  <div class="change-form" [formGroup]="form" (ngSubmit)="submitForm()">
+    <form class="change__form">
+      <div class="error-input">
+        <mat-form-field class="change__input" color="accent">
+          <mat-label>{{'tasks.change-title' | translate}}</mat-label>
+          <input matInput formControlName="title" [placeholder]="'boards.change-label' | translate">
+          <ng-container *ngTemplateOutlet="errors; context: getInput(form, 'title')"></ng-container>
+        </mat-form-field>
+        <mat-form-field class="change__input change-text" color="accent">
+          <mat-label>{{'tasks.change-desc' | translate}}</mat-label>
+          <textarea class="area" matInput formControlName="description" [placeholder]="'tasks.change-text' | translate"></textarea>
+          <ng-container *ngTemplateOutlet="errors; context: getInput(form, 'description')"></ng-container>
+        </mat-form-field>
+      </div>
+      <div class="change__buttons">
+        <button class="change-button" mat-raised-button color="accent" [disabled]="!form.valid">
+          {{'boards.change-btn' | translate}}
+        </button>
+        <button type="button" class="change-button" mat-raised-button color="warn" (click)="cancelChange()">
+          {{'boards.cancel-btn' | translate}}
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<ng-template #errors let-errors="errors" let-touched="touched">
+  <app-errors [errors]="errors" [touched]="touched" bottom="bottom: -1.1rem;" [isLite]="true"></app-errors>
+</ng-template>

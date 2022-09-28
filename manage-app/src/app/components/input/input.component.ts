@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -5,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule],
   template: `
      <div
       class="input-content"
@@ -14,7 +15,7 @@ import { CommonModule } from '@angular/common';
       [class.onfocus]="focus === true"
      >
       <div class="input-text">
-        {{nameTitle | titlecase}}
+        {{pathTitle | translate}}
         <span class="star">*</span>
       </div>
       <div class="focus">
@@ -34,7 +35,7 @@ import { CommonModule } from '@angular/common';
       transform-origin: bottom;
       background-color: inherit;
       color: white;
-      width: 20rem;
+      width: 100%;
       height: 3rem;
       border: 0.1rem solid $bg;
       border-radius: 0 0.5rem 0 0.5rem;
@@ -77,6 +78,7 @@ import { CommonModule } from '@angular/common';
 })
 export class InputComponent {
 
+  @Input() pathTitle!: string;
   @Input() nameTitle!: string | null;
   @Input() value!: any;
 
@@ -84,7 +86,7 @@ export class InputComponent {
 
   changeFocus(isClick = false) {
     const value = this.value[this.nameTitle as string].value as string;
-    if (!isClick && value.length === 0) {
+    if (!isClick && (value?.length === 0 || value === null)) {
       this.focus = !this.focus;
     }
     if (isClick && !this.focus) {

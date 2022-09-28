@@ -1,0 +1,13 @@
+<div class="overview"></div>
+
+<div class="modal">
+  <div class="modal-text">
+    {{ modalWarnService.text | translate }}
+  </div>
+  <div class="modal__buttons">
+    <button class="button modal-button" type="button" (click)="remove()">{{ 'modal.yes' | translate }}</button>
+    <button class="button modal-button green" type="button" (click)="modalWarnService.close()">
+      {{ 'modal.no' | translate }}
+    </button>
+  </div>
+</div>

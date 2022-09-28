@@ -5,10 +5,16 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+
   &__image {
-    width: 35rem;
+    width: 50%;
     filter: drop-shadow(0 2px 5px black);
     border-radius: 1rem;
+
+    @media (max-width: 1024px) {
+      display: none;
+    }
+
   }
 
   &__content {
@@ -17,6 +23,17 @@
     gap: 1rem;
     justify-content: center;
     align-items: flex-start;
+    width: 50%;
+    @media (max-width: 1024px) {
+      width: 100%;
+    }
+    @media (max-width: 580px) {
+      align-items: center;
+    }
+  }
+  
+  &__text-anim {
+    animation: 0.5s cursorText infinite cubic-bezier(0.1, 0.1, 0.5, 1);
   }
 
   &__button {
@@ -30,5 +47,14 @@
       background-color: $gradient-2;
       filter: drop-shadow(1px 2px 4px black);
     }
+  }
+}
+
+@keyframes cursorText {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

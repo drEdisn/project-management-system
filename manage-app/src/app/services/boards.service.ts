@@ -1,5 +1,5 @@
 import { ApiService } from './api.service';
-import { Board, Column, Tasks } from 'src/app/modules/interfacies';
+import { Board, Column } from 'src/app/modules/interfacies';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -24,6 +24,7 @@ export class BoardsService {
   initColumns(boardId: string, callback?: (columnId: Column[]) => void) {
     this.apiService.getColumns(boardId).subscribe((observ: Partial<Column>) => {
       this.columns = observ as Column[];
+      this.columns.sort((a, b) => a.order as number - (b.order as number))
       callback ? callback(this.columns) : null;
     });
   }

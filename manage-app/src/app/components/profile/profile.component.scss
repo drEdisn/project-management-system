@@ -15,27 +15,48 @@
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
-  width: 30rem;
-  height: 80%;
+  min-width: 10rem;
+  width: 80%;
+  max-width: 40rem;
+  height: 90%;
   background-color: $header-bg;
   border-radius: 1.5rem;
   overflow: hidden;
+  &::-webkit-scrollbar-thumb {
+    background-color: rgb(36, 1, 78);
+    border-radius: 0.5rem;
+  }
+  &::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+  }
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+    background-color: rgba(76, 28, 158, 0.484);
+  }
+
+  @media (max-width: 600px) {
+    overflow: auto;
+  }
 
   &__bg {
     object-fit: cover;
-    height: 40%;
+    height: 35%;
     width: 100%;
     box-shadow: 3px 3px 10px $info-bg;
   }
 
   &__image {
     position: absolute;
-    top: 35%;
+    top: 30%;
     transform: translateY(-50%);
     width: 8rem;
     height: 8rem;
     border-radius: 50%;
     box-shadow: 6px 6px 6px $info-bg;
+    @media (max-width: 440px) {
+      top: 20%;
+    }
   }
 
   &__info {
@@ -55,19 +76,37 @@
   justify-content: space-between;
   align-items: center;
   gap: 1rem;
+  @media (max-width: 600px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 .item {
   &__name {
     font-size: 1.2rem;
     font-weight: 400;
+    width: 5rem;
+    @media (max-width: 600px) {
+      text-align: center;
+    }
   }
 
   &__name-value {
+    width: 100%;
     font-size: 1.2rem;
     font-weight: 400;
-    background-color: $gradient-2;
+    background-color: rgb(58 61 142 / 53%);
     padding: 0.5rem;
+    border-radius: 0.2rem;
+    overflow-wrap: anywhere;
+    text-align: center;
+    @media (max-width: 600px) {
+      margin: 0 20%;
+    }
+    @media (max-width: 440px) {
+      margin: 0;
+    }
   }
 
   &__button {
@@ -99,6 +138,7 @@ input[type="file"] {
 
 .inputs {
   position: relative;
+  width: 100%;
 }
 
 .form {
@@ -107,6 +147,9 @@ input[type="file"] {
   justify-content: space-between;
   align-items: center;
   gap: 2rem;
+  width: 70%;
+  position: absolute;
+  top: 50%;
 }
 
 .change {
@@ -119,6 +162,7 @@ input[type="file"] {
   }
 
   &__confirm {
+    height: 2.5rem;
     font-weight: 400;
     width: 45%;
     background-color: $green;
@@ -128,11 +172,22 @@ input[type="file"] {
   }
 
   &__back {
+    height: 2.5rem;
     font-weight: 400;
     width: 45%;
     background-color: $sign-error;
     &:hover {
       background-color: $header-bg;
     }
+  }
+}
+
+.remove {
+  background-color: $sign-error;
+  font-size: 1.1rem;
+  width: 60%;
+  height: 2rem;
+  @media (max-width: 440px) {
+    width: auto;
   }
 }

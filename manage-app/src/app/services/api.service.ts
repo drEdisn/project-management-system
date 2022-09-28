@@ -26,7 +26,7 @@ export class ApiService {
   }
 
   getUser(id: string) {
-    return this.http.get(`${Api.url}${Api.user}${id}`);
+    return this.http.get(`${Api.url}${Api.user}${id}`)
   }
 
   changeUser(id: string, body: Signup) {
@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   removeUser(id: string) {
-    this.http.delete(`${Api.url}${Api.user}${id}`);
+    return this.http.delete(`${Api.url}${Api.user}${id}`);
   }
 
   getBoards() {

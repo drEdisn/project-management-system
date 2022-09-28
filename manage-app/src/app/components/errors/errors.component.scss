@@ -1,0 +1,13 @@
+@import 'variables';
+
+.sign__error {
+  position: absolute;
+  left: 0.6rem;
+  color: $sign-error;
+  background-color: inherit;
+}
+
+.lite {
+  font-size: 0.8rem;
+  left: 0;
+}

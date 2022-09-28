@@ -5,6 +5,11 @@
   background-color: $footer-bg;
   display: flex;
   align-items: center;
+
+  @media (max-width: 440px) {
+    height: 10rem;
+  }
+
   &__container {
     width: 100%;
     font-size: 1.5rem;
@@ -12,10 +17,20 @@
     justify-content: space-around;
     align-items: center;
     color: $white;
+
+    @media (max-width: 440px) {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
   }
   &__info {
     display: flex;
     gap: 1rem;
+
+    @media (max-width: 440px) {
+      width: 100%;
+      justify-content: center;
+    }
   }
 }
 

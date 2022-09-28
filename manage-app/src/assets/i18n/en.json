@@ -1,0 +1,86 @@
+{
+  "boards": {
+    "title": "Boards",
+    "add-btn": "+Add board",
+    "create-btn": "Create",
+    "cancel-btn": "Cancel",
+    "change-btn": "Change",
+    "confirm-btn": "Confirm",
+    "back-btn": "Back",
+    "change-label": "Write title here"
+  },
+  "errors": {
+    "required": "This field is required *",
+    "length": "Minimal length is",
+    "email": "It's not an email",
+    "password": "Your password is too simple"
+  },
+  "columns": {
+    "title": "Board",
+    "add-btn":"+Add new column",
+    "add-task": "Add task",
+    "name": "Column"
+  },
+  "tasks": {
+    "change-title": "Title",
+    "change-desc": "Description",
+    "change-text": "Some text...",
+    "name": "Task"
+  },
+  "modal-add": {
+    "add": "Add"
+  },
+  "login": {
+    "name": "Name",
+    "login": "Login",
+    "password": "Password",
+    "have-account": "Already have an account?",
+    "no-have-account": "Don`t have an account?",
+    "register": "Register"
+  },
+  "profile": {
+    "avatar": "Awatar",
+    "upload": "Upload Image",
+    "remove-btn": "Remove account"
+  },
+  "header": {
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "logout": "Logout",
+    "search": "Search...",
+    "find": "Find Tasks",
+    "main": "main",
+    "boards": "boards"
+  },
+  "main": {
+    "hero-btn": "Try it!",
+    "info-title": "What is kanban board?",
+    "info-text-1": "A kanban board is an agile project management tool designed to help visualize work, limit work-in-progress, and maximize efficiency (or flow). It can help both agile and DevOps teams establish order in their daily work. Kanban boards use cards, columns, and continuous improvement to help technology and service teams commit to the right amount of work, and get it done!",
+    "info-text-2": "Kanban is one of the most popular software development methodologies adopted by agile teams today. Kanban offers several additional advantages to task planning and throughput for teams of all sizes.",
+    "course-title": "The Rolling Scope School",
+    "course-subtitle": "This page was created as a final task for the anfular course in the Rolling Scope School.",
+    "course-about": "RS School is free-of-charge and community-based education program conducted by The Rolling Scopes developer community since 2013. Everyone can study at RS School, regardless of age, professional employment, or place of residence. The mentors and trainers of our school are front-end and javascript developers from different companies and countries.",
+    "course-block-title-1": "FREE-OF-CHARGE LEARNING",
+    "course-block-title-2": "OPEN TO EVERYONE",
+    "course-block-title-3": "CERTIFICATE",
+    "course-block-title-4": "SCHEDULE",
+    "course-block-text-1": "The RS School is working by the principle of \"Pay it forward\". Members of our community share their knowledge and check students' tasks for free. And we hope that our students will continue this work as our mentors in the future.",
+    "course-block-text-2": "Everyone can study at RS School, regardless of age, professional employment, or place of residence. However, you should have sufficient base knowledge before the program begins.",
+    "course-block-text-3": "After accomplishing all three stages of education, students will receive an electronic certificate of completion.",
+    "course-block-text-4": "Twice a week in the evenings.\nDuration: 9 weeks.\nTypes of training: webinars.",
+    "join": "Join!"
+  },
+  "modal": {
+    "yes": "Yes",
+    "no": "No",
+    "task-warn": "Are you really want to remove this task?",
+    "board-warn": "Are you really want to remove this board?",
+    "column-warn": "Are you really want to remove this column?",
+    "user-warn": "Are you really want to remove your account?",
+    "user-change": "User was changed",
+    "user-not-change": "User didn't change",
+    "user-create": "User is creared",
+    "user-exists": "User with this email already exists",
+    "user-not-found": "User if not found"
+  }
+}

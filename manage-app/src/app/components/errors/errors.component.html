@@ -1,0 +1,12 @@
+<div class="sign__error" [class.lite]="isLite" [style]="bottom" *ngIf="errors?.required && touched">
+  {{ 'errors.required' | translate }}
+</div>
+<div class="sign__error" [class.lite]="isLite" [style]="bottom" *ngIf="errors?.minlength && touched">
+  {{ 'errors.length' | translate }} "{{ errors?.minlength.requiredLength }}"
+</div>
+<div class="sign__error" [class.lite]="isLite" [style]="bottom" *ngIf="errors?.email && touched">
+  {{ 'errors.email' | translate }}
+</div>
+<div class="sign__error" [class.lite]="isLite" [style]="bottom" *ngIf="errors?.pattern && touched">
+  {{ 'errors.password' | translate }}
+</div>

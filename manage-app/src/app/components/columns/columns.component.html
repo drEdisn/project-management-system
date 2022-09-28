@@ -1,5 +1,5 @@
-<div class="container columns">
-  <div class="columns__container">
+<div class="columns" [style]="{backgroundImage: getBg()}">
+  <div class="container columns__container">
     <div class="loader" *ngIf="loaderService.isLoading | async">
       <mat-spinner color="warn" mode="indeterminate"></mat-spinner>
     </div>
@@ -10,34 +10,24 @@
         </svg>
       </button>
       <div class="columns__title">
-        Board: <span class="columns__id">{{ boardName }}</span>
+        {{'columns.title' | translate}}: <span class="columns__id">{{ boardName }}</span>
       </div>
     </div>
-    <div
-    cdkDropListGroup
-    cdkDropList
-    [cdkDropListData]="boardsService.columns"
-    cdkDropListOrientation="horizontal"
-    (cdkDropListDropped)="drop($event)"
-    class="columns__content">
-      <div cdkDrag class="columns__item" *ngFor="let column of boardsService.columns">
-        <div class="columns__name" (click)="changeColumn(column.id)">{{ column.title }}</div>
-        <div
-        class="tasks"
-        cdkDropList
-        [cdkDropListData]="getTasks(column.id)"
-        (cdkDropListDropped)="dropTask($event)"
-        >
-          <app-task
-            cdkDrag
-            *ngFor="let task of getTasks(column.id)"
-            [task]="task"
-            [tasks]="tasks"
-            (click)="changeTask(column.id, task.id)"
-          ></app-task>
+    <div cdkDropListGroup cdkDropList [cdkDropListData]="boardsService.columns" cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event)" class="columns__content">
+      <div cdkDrag [cdkDragDisabled]="(changeId === column.id) || isTaskChange" class="columns__item" [attr.data-id]="column.id"
+        *ngFor="let column of boardsService.columns">
+        <div class="columns__name" (click)="changeOn(column.title, column.id)">
+          {{ column.title }}
+        </div>
+        <ng-container *ngIf="(changeId === column.id)">
+          <ng-container *ngTemplateOutlet="changeForm; context: column"></ng-container>
+        </ng-container>
+        <div class="tasks" cdkDropList [cdkDropListData]="getTasks(column.id)" (cdkDropListDropped)="dropTask($event)">
+          <app-task *ngFor="let task of getTasks(column.id)" (isChangeTask)="changeTask($event)" [task]="task" [tasks]="tasks"></app-task>
         </div>
         <div class="columns__setting">
-          <button class="add-item" (click)="addTask(column.id)">Add Task</button>
+          <button class="add-item" (click)="addTask(column.id)">{{ 'columns.add-task' | translate }}</button>
           <button class="button delete-item" (click)="removeColumn(column.id)">
             <svg class="delete-item" xmlns="http://www.w3.org/2000/svg" height="24" width="24">
               <path
@@ -46,15 +36,40 @@
           </button>
         </div>
       </div>
-      <div class="columns__item empty" (click)="addColumn()">
-        <h6 class="empty__title">+Add new column</h6>
-      </div>
-      <app-modal-add
-        [title]="modalTitle"
-        [button]="modalButton"
-        *ngIf="modalAddService.isVisible"
-        [tasks]="tasks"
-      ></app-modal-add>
+      <button class="columns__item empty" [disabled]="changeId" (click)="addColumn()">
+        <h6 class="empty__title">{{ 'columns.add-btn' | translate }}</h6>
+      </button>
+      <app-modal-add *ngIf="modalAddService.isVisible" [tasks]="tasks">
+      </app-modal-add>
+      <app-modal-warn *ngIf="modalWarnService.isOpen" [tasks]="tasks"></app-modal-warn>
     </div>
   </div>
 </div>
+
+<ng-template #changeForm let-title="title" let-columnId="id">
+  <div class="overview"></div>
+  <div class="change-form" [formGroup]="form" (ngSubmit)="submitForm(columnId)">
+    <form class="change__form">
+      <div class="error-input">
+        <mat-form-field class="change__input" color="accent">
+          <mat-label>{{ 'tasks.change-title' | translate }}</mat-label>
+          <input matInput formControlName="title" [placeholder]="'boards.change-label' | translate">
+        </mat-form-field>
+        <ng-container *ngTemplateOutlet="errors; context: form.controls.title"></ng-container>
+      </div>
+      <div class="change__buttons">
+        <button class="change-button" mat-raised-button color="accent" [disabled]="!form.valid">
+          {{ 'boards.change-btn' | translate }}
+        </button>
+        <button type="button" class="change-button" mat-raised-button color="warn" (click)="cancelChange()">
+          {{ 'boards.cancel-btn' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+<ng-template #errors let-errors="errors" let-touched="touched">
+  <app-errors [errors]="errors" [touched]="touched" bottom="bottom: -0.1rem;" [isLite]="true"></app-errors>
+</ng-template>

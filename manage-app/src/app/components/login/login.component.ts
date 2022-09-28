@@ -1,3 +1,4 @@
+import { ErrorsComponent } from './../errors/errors.component';
 import { StorageService } from './../../services/storage.service';
 import { LoaderService } from './../../services/loader.service';
 import { ModalComponent } from './../modal/modal.component';
@@ -8,11 +9,12 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { Auth } from 'src/app/modules/enums';
-import { Form, FormLogin, Signin, Signup, User } from 'src/app/modules/interfacies';
+import { Auth, ConfirmModal } from 'src/app/modules/enums';
+import { Form, FormLogin, Signin, Signup, Translate, User } from 'src/app/modules/interfacies';
 import { InputComponent } from '../input/input.component';
 import { Token } from 'src/app/modules/types';
 import jwtParce from 'src/app/modules/jwtParse';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -23,41 +25,22 @@ import jwtParce from 'src/app/modules/jwtParse';
     ReactiveFormsModule,
     InputComponent,
     ModalComponent,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    ErrorsComponent,
+    TranslateModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 
-  public form: FormGroup<Form> = new FormGroup({
-    name: new FormControl<string>('', [
-      Validators.required,
-      Validators.minLength(3)
-    ]),
-    login: new FormControl<string>('', [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl<string>('', [
-      Validators.required,
-      Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')
-    ]),
-  });
-
-  public formLogin: FormGroup<FormLogin> = new FormGroup({
-    login: new FormControl<string>('', [
-      Validators.required,
-      Validators.email
-    ]),
-    password: new FormControl<string>('', [
-      Validators.required,
-      Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')
-    ]),
-  });
-
+  public form!: FormGroup;
   public signin = false;
-  public inputs: string[] = ['name', 'login', 'password'];
+  public inputs: Translate[] = [
+    { title: 'name', path: 'login.name' },
+    { title: 'login', path: 'login.login' },
+    { title: 'password', path: 'login.password' }
+  ];
 
   constructor(
     private route: ActivatedRoute,
@@ -68,9 +51,27 @@ export class LoginComponent {
     public storageService: StorageService
   ) { }
 
+  initForm() {
+    this.form = new FormGroup({
+      ...(!this.signin ? { name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3)
+      ]) } : {}),
+      login: new FormControl(null, [
+        Validators.required,
+        Validators.email
+      ]),
+      password: new FormControl(null, [
+        Validators.required,
+        Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')
+      ]),
+    });
+  }
+
   ngOnInit() {
     const url = this.route.snapshot.routeConfig?.path;
     if (url === Auth.singin) this.signin = true;
+    this.initForm();
   }
 
   getInput(form: any, input: string) {
@@ -91,24 +92,24 @@ export class LoginComponent {
     this.apiService.createUser(this.form.value as Signup)
       .subscribe(
         () => {
-          this.modalService.open('User is creared', true);
+          this.modalService.open(ConfirmModal.userCreate, true);
         },
         () => {
           console.error('User with this email already exists');
-          this.modalService.open('User with this email already exists');
+          this.modalService.open(ConfirmModal.userExists);
         }
       );
   }
 
   loginUser() {
-    this.apiService.loginUser(this.formLogin.value as Signin)
+    this.apiService.loginUser(this.form.value as Signin)
       .subscribe(
         (observ: Partial<Token>) => {
           this.setUserData(observ.token as string);
         },
         () => {
           console.error('User is not found');
-          this.modalService.open('User if not found');
+          this.modalService.open(ConfirmModal.userNotFound);
         }
       );
   }

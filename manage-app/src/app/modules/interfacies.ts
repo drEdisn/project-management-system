@@ -62,6 +62,18 @@ interface Tasks {
   files?: File[]
 }
 
+interface ApiIds {
+  boardId?: string,
+  columnId?: string,
+  taskId?: string,
+  userId?: string,
+}
+
+interface Translate {
+  title: string,
+  path: string,
+}
+
 export {
   User,
   Signup,
@@ -71,5 +83,7 @@ export {
   Jwt,
   Board,
   Tasks,
-  Column
+  Column,
+  ApiIds,
+  Translate
 }

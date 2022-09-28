@@ -11,6 +11,11 @@ section {
     justify-content: center;
     align-items: center;
     background: linear-gradient(to right, $gradient-1, $gradient-2);
+    
+    @media (max-width: 1024px) {
+      background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../../../../assets/project-management-hero.png');
+      background-size: cover;
+    }
   }
 
   &__nav {
@@ -19,6 +24,9 @@ section {
     align-items: center;
     height: 10rem;
     background: linear-gradient(0deg, $header-bg, $gradient-1);
+    @media (max-width: 800px) {
+      height: 15rem;
+    }
   }
   
   &__info {
@@ -36,5 +44,22 @@ section {
     align-items: center;
     min-height: 25rem;
     padding: 0;
+  }
+}
+
+._active {
+  transform: scale(100%) translate(0, 0);
+  opacity: 1;
+  animation: textHoist 0.7s ease-in backwards;
+}
+
+@keyframes textHoist {
+  from {
+    transform: scale(50%) translate(0%, 80%);
+    opacity: 0;
+  }
+  to {
+    transform: scale(100%) translate(0, 0);
+    opacity: 1;
   }
 }

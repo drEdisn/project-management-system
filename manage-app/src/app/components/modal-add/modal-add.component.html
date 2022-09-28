@@ -1,46 +1,29 @@
 <div class="overview"></div>
 
 <form class="modal" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h6 class="modal__title title">{{title}} {{ modalAddService.value | titlecase }}</h6>
-  <div class="modal__input" *ngFor="let input of inputs">
-    <app-input
-      [nameTitle]="input"
-      [value]="form.controls"
-    >
-      <input
-        class="input"
-        type="text"
-        [formControlName]="input"
-      >
-    </app-input>
-    <ng-container *ngTemplateOutlet="errors; context: getInput(form, input)"></ng-container>
-  </div>
+  <h6 class="modal__title title">
+    {{ 'modal-add.add' | translate }} {{ modalAddService.value | translate }}
+  </h6>
+  <mat-form-field class="modal__input" color="accent">
+    <mat-label>{{ 'tasks.change-title' | translate }}</mat-label>
+    <input matInput formControlName="title" [placeholder]="'boards.change-label' | translate">
+    <ng-container *ngTemplateOutlet="errors; context: getInput(form, 'title')"></ng-container>
+  </mat-form-field>
+  <mat-form-field *ngIf="isTask" class="modal__input" color="accent">
+    <mat-label>{{ 'tasks.change-desc' | translate }}</mat-label>
+    <textarea matInput formControlName="description" [placeholder]="'tasks.change-text' | translate"></textarea>
+    <ng-container *ngTemplateOutlet="errors; context: getInput(form, 'description')"></ng-container>
+  </mat-form-field>
   <div class="modal__buttons">
-    <button type="submit" class="buttons__submit button" [disabled]="!form.valid">
-      {{button}}
+    <button mat-raised-button type="submit" class="buttons__submit" [disabled]="!form.valid">
+      {{'boards.create-btn' | translate}}
     </button>
-    <button
-      type="button"
-      class="buttons__cancel button"
-      (click)="modalAddService.close()"
-    >
-      Cancel
+    <button mat-raised-button type="button" class="buttons__cancel" (click)="modalAddService.close()">
+      {{ 'boards.cancel-btn' | translate }}
     </button>
   </div>
 </form>
 
-
 <ng-template #errors let-errors="errors" let-touched="touched">
-  <div
-    class="sign__error"
-    *ngIf="errors?.required && touched"
-  >
-    This field is required *
-  </div>
-  <div
-    class="sign__error"
-    *ngIf="errors?.minlength && touched"
-  >
-    Minimal length is {{ errors?.minlength.requiredLength }}
-  </div>
+  <app-errors [errors]="errors" [touched]="touched" [isLite]="true"></app-errors>
 </ng-template>

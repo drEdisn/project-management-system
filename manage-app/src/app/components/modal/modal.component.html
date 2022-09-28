@@ -2,7 +2,7 @@
 
 <div class="modal">
   <div class="modal-text" [class.color]="modalService.isColor">
-    {{ modalService.text }}
+    {{ modalService.text | translate }}
   </div>
   <button class="button modal-button" [class.bgcolor]="modalService.isColor" type="button" (click)="modalService.close()">OK</button>
 </div>

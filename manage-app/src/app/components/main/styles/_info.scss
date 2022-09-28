@@ -11,6 +11,9 @@
     width: 80%;
     text-align: justify;
     font-size: 1.4rem;
+    @media (max-width: 580px) {
+      font-size: 1.1rem;
+    }
   }
 
   &__image {

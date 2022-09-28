@@ -16,23 +16,27 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 20rem;
+  min-width: 16rem;
+  width: 40%;
+  max-width: 25rem;
   padding: 1rem;
   min-height: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   border-radius: 1rem;
-  background-color: $header-bg;
+  background-color: rgb(65 47 94 / 79%);
 
   &__title {
     font-size: 2rem;
+    text-align: center;
   }
 
   &__input {
     position: relative;
+    width: 80%;
   }
 
   &__buttons {
@@ -46,13 +50,24 @@
 
 .buttons {
   &__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40%;
     background-color: $green;
   }
 
   &__cancel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40%;
     background-color: $sign-error;
   }
+}
+
+.error {
+  left: 0;
+  font-size: 0.9rem;
 }
 
