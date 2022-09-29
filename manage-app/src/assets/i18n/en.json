@@ -68,7 +68,11 @@
     "course-block-text-2": "Everyone can study at RS School, regardless of age, professional employment, or place of residence. However, you should have sufficient base knowledge before the program begins.",
     "course-block-text-3": "After accomplishing all three stages of education, students will receive an electronic certificate of completion.",
     "course-block-text-4": "Twice a week in the evenings.\nDuration: 9 weeks.\nTypes of training: webinars.",
-    "join": "Join!"
+    "join": "Join!",
+    "name": "Denis(drEdisn)",
+    "about-1": "Hi. My name's Denis i also call myself drEdisn. I took the idea for the page style from this ",
+    "about-page": "page",
+    "about-2": "because my mind doesn't generate good ideas. But I wrote all the code myself. (This is in case you think that I took someone else's code)"
   },
   "modal": {
     "yes": "Yes",
