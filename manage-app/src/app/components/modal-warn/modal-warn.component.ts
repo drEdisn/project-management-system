@@ -57,8 +57,9 @@ export class ModalWarnComponent {
   }
 
   removeBoard() {
-    this.apiService.removeBoard(this.boardId as string).subscribe(() => {
+    this.apiService.removeBoard(this.boardId).subscribe(() => {
       this.boardsService.boards = this.boardsService.boards.filter(board => board.id !== this.boardId);
+      this.storageService.removeImage(this.boardId);
     });
   }
 

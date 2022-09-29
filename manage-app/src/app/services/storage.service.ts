@@ -68,4 +68,9 @@ export class StorageService {
     localStorage.setItem('background', JSON.stringify(this.boardImages));
   }
 
+  removeImage(boardId: string) {
+    this.boardImages = this.boardImages.filter(image => image.boardId !== boardId);
+    localStorage.setItem('background', JSON.stringify(this.boardImages));
+  }
+
 }

@@ -30,9 +30,15 @@ enum ConfirmModal {
   userNotFound = 'modal.user-not-found'
 }
 
+enum Errors {
+  DISCONECT = 0,
+  NOT_FOUND = 404,
+}
+
 export {
   Api,
   Auth,
   WarnString,
   ConfirmModal,
+  Errors
 };

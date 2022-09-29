@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class FooterComponent {
 
+  constructor(
+    private location: Location
+  ) {}
+
+  getPath() {
+    return this.location.path() === '';
+  }
 }

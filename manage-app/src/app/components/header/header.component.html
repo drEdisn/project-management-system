@@ -29,13 +29,10 @@
           [placeholder]="'header.search' | translate"
         >
         <div *ngIf="isFocus" class="search__content">
-          <div class="loader" *ngIf="loaderService.isLoading | async">
-            <mat-spinner color="warn" mode="indeterminate"></mat-spinner>
-          </div>
           <h6 class="search__content-title">{{'header.find' | translate}}</h6>
           <div class="search__tasks">
             <a class="search__task-item" [routerLink]="['/boards', task.boardId]"
-              *ngFor="let task of searchService.filterTasks; let i = index">
+              *ngFor="let task of searchService.filterTasks; let i = index" (click)="getTaskPage(task.boardId)">
               <span class="index">{{i + 1}}</span>
               <span class="task-name">{{task.title}}</span>
             </a>
@@ -70,7 +67,7 @@
           <h6 class="search__content-title">{{'header.find' | translate}}</h6>
           <div class="search__tasks">
             <a class="search__task-item" [routerLink]="['/boards', task.boardId]"
-              *ngFor="let task of searchService.filterTasks; let i = index" (click)="menuOff()">
+              *ngFor="let task of searchService.filterTasks; let i = index" (click)="getTaskPage(task.boardId, true)">
               <span class="index">{{i + 1}}</span>
               <span class="task-name">{{task.title}}</span>
             </a>
@@ -101,9 +98,11 @@
 </header>
 
 <ng-template #login>
-  <div class="header__name">{{ storageService.user?.name | titlecase }}</div>
-  <div class="header__user" routerLink="profile">
-    <img src="./assets/profile-img.jpg" class="header__profile-icon">
+  <div class="profile-link" routerLink="profile">
+    <div class="header__name">{{ storageService.user?.name | titlecase }}</div>
+    <div class="header__user">
+      <img src="./assets/profile-img.jpg" class="header__profile-icon">
+    </div>
   </div>
   <button class="header__logout button log-btn" (click)="logout()">{{ 'header.logout' | translate }}</button>
 </ng-template>

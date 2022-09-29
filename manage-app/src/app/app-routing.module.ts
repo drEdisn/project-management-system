@@ -31,10 +31,14 @@ const routes: Routes = [
     loadComponent: () => import('./components/columns/columns.component').then(map => map.ColumnsComponent),
     canActivate: [ AuthGuard ]
   },
+  { 
+    path: 'not-found',
+    loadComponent: () => import('./components/not-found/not-found.component').then(map => map.NotFoundComponent),
+    canActivate: [ AuthGuard ]
+  },
   {
     path: '**',
-    redirectTo: '',
-    component: MainComponent,
+    redirectTo: 'not-found',
   }
 ];
 

@@ -146,10 +146,13 @@
   }
 
   &__user {
-    cursor: pointer;
     width: 3rem;
     height: 3rem;
     border-radius: 1.5rem;
+
+    @media (max-width: 320px) {
+      display: none;
+    }
   }
 
   &__profile-icon {
@@ -278,4 +281,11 @@
     transform: translate(0);
     opacity: 1;
   }
+}
+
+.profile-link {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }

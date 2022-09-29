@@ -10,7 +10,7 @@ import { ModalAddComponent } from './../modal-add/modal-add.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoaderService } from './../../services/loader.service';
 import { BoardsService } from './../../services/boards.service';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TaskComponent } from './../task/task.component';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
@@ -52,7 +52,7 @@ export class ColumnsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private apiService: ApiService,
     public boardsService: BoardsService,
     public loaderService: LoaderService,
@@ -62,6 +62,10 @@ export class ColumnsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.init();
+  }
+
+  init() {
     if (this.boardsService.boards.length === 0) {
       this.boardsService.initBoards(() => {
         this.boardName = this.getBoard();
@@ -204,7 +208,7 @@ export class ColumnsComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back();
+    this.router.navigate(['/boards']);
   }
 
   addColumn() {

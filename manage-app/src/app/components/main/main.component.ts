@@ -1,4 +1,3 @@
-import { TextWrite } from '../../modules/text.model';
 import { ScrollAnimationDirective } from './../../directives/scroll-animation.directive';
 import { RouterModule } from '@angular/router';
 import { StorageService } from './../../services/storage.service';
@@ -16,19 +15,19 @@ import { CommonModule } from '@angular/common';
     './styles/_hero.scss',
     './styles/_links.scss',
     './styles/_info.scss',
-    './styles/_course.scss'
+    './styles/_course.scss',
+    './styles/_creater.scss'
   ],
 })
 export class MainComponent {
 
   constructor(
     public storageService: StorageService,
-    private translate: TranslateService,
+    private translate: TranslateService
   ) {}
   
   ngOnInit() {
     const current = this.translate.currentLang;
     setTimeout(() => this.storageService.textWrite.textWriting(current), 1000);
   }
-
 }

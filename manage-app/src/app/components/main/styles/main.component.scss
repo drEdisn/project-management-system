@@ -45,6 +45,10 @@ section {
     min-height: 25rem;
     padding: 0;
   }
+
+  &__creater {
+    background: linear-gradient(360deg, black, transparent);
+  }
 }
 
 ._active {

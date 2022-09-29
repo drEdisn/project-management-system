@@ -1,3 +1,4 @@
+import { PartString } from 'src/app/modules/types';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { LoaderService } from './../../services/loader.service';
@@ -72,7 +73,7 @@ export class HeaderComponent {
     public translate: TranslateService,
     public searchService: SearchService,
     public loaderService: LoaderService,
-    public route: Router,
+    public router: Router,
   ) {}
 
   logout() {
@@ -100,6 +101,14 @@ export class HeaderComponent {
 
   getAllTasks() {
     this.searchService.getAllTasks();
+  }
+
+  getTaskPage(boardId: PartString, isOff = false) {
+    this.router.navigateByUrl('', { skipLocationChange: true }).then(() => {
+      this.router.navigate([`/boards/${boardId}`]);
+    });
+
+    isOff ? this.menuOff() : null;
   }
 
   menuOff() {
