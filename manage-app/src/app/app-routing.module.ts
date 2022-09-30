@@ -34,7 +34,6 @@ const routes: Routes = [
   { 
     path: 'not-found',
     loadComponent: () => import('./components/not-found/not-found.component').then(map => map.NotFoundComponent),
-    canActivate: [ AuthGuard ]
   },
   {
     path: '**',
