@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   height: calc(100vh - 9.2rem);
+  overflow-y: auto;
 }
 
 .profile {
@@ -19,6 +20,7 @@
   width: 80%;
   max-width: 40rem;
   height: 90%;
+  min-height: 17rem;
   background-color: $header-bg;
   border-radius: 1.5rem;
   overflow: hidden;
@@ -112,6 +114,15 @@
   &__button {
     border-radius: 0.2rem;
     background-color: $sign-error;
+
+    @media (max-width: 600px) {
+      width: 100%;
+      margin: 0 20%;
+    }
+    @media (max-width: 440px) {
+      width: 100%;
+      margin: 0;
+    }
   }
 }
 

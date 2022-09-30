@@ -33,12 +33,15 @@ export class ScrollAnimationDirective {
 
   checkBlock() {
     const isBlock = this.element.classList.contains('block');
+    const isCreat = this.element.classList.contains('creater');
     if (isBlock) {
       if (this.element.dataset.left) {
         this.animationBlockLeft();
       } else {
         this.animationBlockRight();
       }
+    } else if (isCreat) {
+      this.animationLastElement();
     } else {
       this.animation();
     }
@@ -56,6 +59,10 @@ export class ScrollAnimationDirective {
     this.createAnimation('translate(50%, 0%)');
   }
 
+  animationLastElement() {
+    this.createAnimation('scale(0.5)');
+  }
+
   createAnimation(transform: string) {
     this.el.nativeElement.animate(
       [
@@ -64,7 +71,7 @@ export class ScrollAnimationDirective {
           opacity: '0'
         },
         {
-          transform: 'translate(0)',
+          transform: 'translate(0) scale(1)',
           opacity: '1'
         },
       ],
