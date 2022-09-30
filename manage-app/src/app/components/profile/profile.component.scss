@@ -190,6 +190,10 @@ input[type="file"] {
     &:hover {
       background-color: $header-bg;
     }
+
+    @media (max-width: 500px) {
+      width: 50%;
+    }
   }
 }
 
