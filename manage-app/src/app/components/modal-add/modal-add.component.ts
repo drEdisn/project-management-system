@@ -76,7 +76,7 @@ export class ModalAddComponent {
     ).subscribe((observ: Partial<Column>) => {
       this.boardsService.columns.push(observ as Column);
       this.tasks.set(observ.id as string, []);
-    });
+    }, () => {});
   }
 
   addTask() {
@@ -92,7 +92,7 @@ export class ModalAddComponent {
     ).subscribe((observ: Partial<Tasks>) => {
       const columnTasks = this.tasks.get(this.modalAddService.columnId as string);
       columnTasks?.push(observ as Tasks);
-    });
+    }, () => {});
   }
 
   onSubmit() {

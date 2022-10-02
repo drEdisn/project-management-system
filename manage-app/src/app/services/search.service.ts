@@ -15,28 +15,38 @@ export class SearchService {
   ) { }
 
   filter(string: string) {
-    return this.filterTasks = this.tasks.filter(task => task.title.includes(string));
+    return this.filterTasks = this.tasks.filter(task => {
+      return task.title.toLocaleLowerCase().includes(string.toLocaleLowerCase());
+    });
   }
 
   getAllTasks() {
     this.tasks = [];
     return this.apiService.getBoards()
     .subscribe((boards: Partial<Board>) => {
-      const boardsArray = boards as Board[];
-      boardsArray.forEach(board => {
-        this.apiService.getColumns(board.id as string)
-        .subscribe((columns: Partial<Column>) => {
-          const columnsArray = columns as Column[];
-          columnsArray.forEach(column => {
-            this.apiService.getTasks(board.id as string, column.id as string)
-            .subscribe((tasks: Partial<Tasks>) => {
-              this.tasks.push(tasks as Tasks);
-              this.tasks = this.tasks.flat();
-              this.filterTasks = this.tasks;
-            })
-          });
-        })
-      });
-    })
+      this.getBoards(boards);
+    }, () => {})
+  }
+
+  getBoards(boards: Partial<Board>) {
+    const boardsArray = boards as Board[];
+    boardsArray.forEach(board => {
+      this.apiService.getColumns(board.id as string)
+      .subscribe((columns: Partial<Column>) => {
+        this.getColumns(board.id as string, columns);
+      }, () => {})
+    });
+  }
+
+  getColumns(boardId: string, columns: Partial<Column>) {
+    const columnsArray = columns as Column[];
+    columnsArray.forEach(column => {
+      this.apiService.getTasks(boardId, column.id as string)
+      .subscribe((tasks: Partial<Tasks>) => {
+        this.tasks.push(tasks as Tasks);
+        this.tasks = this.tasks.flat();
+        this.filterTasks = this.tasks;
+      }, () => {})
+    });
   }
 }

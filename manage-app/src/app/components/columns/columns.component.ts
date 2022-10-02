@@ -77,7 +77,7 @@ export class ColumnsComponent implements OnInit {
           const taskArray = observ as Tasks[];
           taskArray.sort((a, b) => a.order as number - (b.order as number));
           this.tasks.set(column[i].id as string, taskArray);
-        });
+        }, () => {});
       }
     });
   }
@@ -128,7 +128,7 @@ export class ColumnsComponent implements OnInit {
         }
         return column;
       });
-    })
+    }, () => {})
     this.cancelChange();
   }
 

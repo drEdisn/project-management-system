@@ -79,7 +79,7 @@ export class TaskComponent {
       body
     ).subscribe((observ: Partial<Tasks>) => {
       tasks?.splice(tasks.indexOf(task as Tasks), 1, observ as Tasks);
-    })
+    }, () => {})
   }
 
   cancelChange() {

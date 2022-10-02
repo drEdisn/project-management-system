@@ -35,7 +35,6 @@ export class BoardsService {
   getError(err: any) {
     err.status === Errors.DISCONECT || err.status === Errors.NOT_FOUND
       ? this.router.navigate(['not-found'])
-      : console.error(err);
+      : null;
   }
 }
-

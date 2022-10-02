@@ -88,12 +88,12 @@ export class BoardsComponent implements OnInit {
           .filter(board => board.id !== observ.id as string);
         this.boardsService.boards.push(observ as Board);
         this.cancelChange();
-      });
+      }, () => {});
     } else {
       this.apiService.addBoard(body).subscribe((observ: Partial<Board>) => {
         this.boardsService.boards.push(observ as Board);
         this.changeCreated();
-      });
+      }, () => {});
     }
   }
 

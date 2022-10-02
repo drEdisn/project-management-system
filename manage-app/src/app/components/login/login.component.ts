@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { Auth, ConfirmModal } from 'src/app/modules/enums';
-import { Form, FormLogin, Signin, Signup, Translate, User } from 'src/app/modules/interfacies';
+import { Signin, Signup, Translate, User } from 'src/app/modules/interfacies';
 import { InputComponent } from '../input/input.component';
 import { Token } from 'src/app/modules/types';
 import jwtParce from 'src/app/modules/jwtParse';
@@ -84,7 +84,7 @@ export class LoginComponent {
     this.apiService.getUser(jwtParce(token).userId)
       .subscribe((user: Partial<User>) => {
         this.storageService.setUser(user as User);
-      });
+      }, () => {});
     this.router.navigate(['/boards']);
   }
 
@@ -94,10 +94,7 @@ export class LoginComponent {
         () => {
           this.modalService.open(ConfirmModal.userCreate, true);
         },
-        () => {
-          console.error('User with this email already exists');
-          this.modalService.open(ConfirmModal.userExists);
-        }
+        () => this.modalService.open(ConfirmModal.userExists)
       );
   }
 
@@ -107,10 +104,7 @@ export class LoginComponent {
         (observ: Partial<Token>) => {
           this.setUserData(observ.token as string);
         },
-        () => {
-          console.error('User is not found');
-          this.modalService.open(ConfirmModal.userNotFound);
-        }
+        () => this.modalService.open(ConfirmModal.userNotFound)
       );
   }
 }

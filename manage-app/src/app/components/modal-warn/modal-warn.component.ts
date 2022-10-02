@@ -32,7 +32,7 @@ export class ModalWarnComponent {
   removeAccount() {
     this.apiService.removeUser(this.modalWarnService.userId as string).subscribe(() => {
       this.storageService.logoutUser();
-    });
+    }, () => {});
   }
 
   removeTask() {
@@ -45,7 +45,7 @@ export class ModalWarnComponent {
         let columnTasks = this.tasks.get(this.columnId as string);
         const task = columnTasks?.find(task => task.id === this.taskId) as Tasks;
         columnTasks?.splice(columnTasks?.indexOf(task), 1);
-      });
+      }, () => {});
   }
 
   removeColumn() {
@@ -53,14 +53,14 @@ export class ModalWarnComponent {
       .subscribe(() => {
         this.boardsService.columns = this.boardsService.columns
           .filter(column => column.id !== this.columnId);
-      });
+      }, () => {});
   }
 
   removeBoard() {
     this.apiService.removeBoard(this.boardId).subscribe(() => {
       this.boardsService.boards = this.boardsService.boards.filter(board => board.id !== this.boardId);
       this.storageService.removeImage(this.boardId);
-    });
+    }, () => {});
   }
 
   remove() {

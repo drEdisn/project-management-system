@@ -111,10 +111,7 @@ export class ProfileComponent implements OnInit {
         this.storageService.setUser(observ as User);
         this.modalService.open(ConfirmModal.userChange, true);
       },
-      () => {
-        console.error('User didn\'t change')
-        this.modalService.open(ConfirmModal.noUserChange);
-      }
+      () => this.modalService.open(ConfirmModal.noUserChange)
     );
   }
 
