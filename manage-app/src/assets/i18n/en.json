@@ -70,9 +70,7 @@
     "course-block-text-4": "Twice a week in the evenings.\nDuration: 9 weeks.\nTypes of training: webinars.",
     "join": "Join!",
     "name": "Denis(drEdisn)",
-    "about-1": "Hi. My name's Denis i also call myself drEdisn. I took the idea for the page style from this ",
-    "about-page": "page",
-    "about-2": "because my mind doesn't generate good ideas. But I wrote all the code myself. (This is in case you think that I took someone else's code)"
+    "about-me": "Hello. My name is Denis and I also call myself Edisn. This is my first site using the Angular framework. I tried to use as many features as I could find. But i know further will be better"
   },
   "modal": {
     "yes": "Yes",
@@ -85,6 +83,6 @@
     "user-not-change": "User didn't change",
     "user-create": "User is creared",
     "user-exists": "User with this email already exists",
-    "user-not-found": "User if not found"
+    "user-not-found": "User is not found"
   }
 }
