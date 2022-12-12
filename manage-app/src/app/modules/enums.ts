@@ -1,5 +1,5 @@
 enum Api {
-  url = 'https://murmuring-island-33617.herokuapp.com/',
+  url = 'https://kanban-rest-production-e4de.up.railway.app/',
   user = 'users/',
   users = 'users',
   board = 'boards/',
